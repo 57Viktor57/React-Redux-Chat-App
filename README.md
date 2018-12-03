@@ -10,4 +10,4 @@ Application was built with web socket API and React/Redux libraries.
 
 #Demo link Heroku.
 
-[]()
+[https://hexlet-slack-project.herokuapp.com/](https://hexlet-slack-project.herokuapp.com/)
