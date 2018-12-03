@@ -2,11 +2,13 @@
   "name": "frontend_project",
   "version": "0.0.1",
   "description": "Project from Hexlet IO by Viktor Kugay",
-  "main": "dist/index.js",
-  "bin": {
-    "hexlet": "dist/bin/hexlet.js"
+  "engines": {
+    "node": "8.10.0"
   },
+  "main": "./dist/bin/slack.js",
   "scripts": {
+    "start": "node ./dist/bin/slack.js",
+    "heroku-postbuild": "webpack -p",
     "test": "jest",
     "build-server": "babel server --out-dir dist --source-maps inline",
     "build-app": "npx webpack -p --env production",
