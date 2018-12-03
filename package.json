@@ -1,7 +1,11 @@
 {
-  "name": "frontend_project_4",
+  "name": "frontend_project",
   "version": "0.0.1",
-  "description": "Project by Viktor Kugay for Hexlet IO",
+  "description": "Project from Hexlet IO by Viktor Kugay",
+  "main": "dist/index.js",
+  "bin": {
+    "hexlet": "dist/bin/hexlet.js"
+  },
   "scripts": {
     "test": "jest",
     "build-server": "babel server --out-dir dist --source-maps inline",
@@ -11,10 +15,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/57Viktor57/project-lvl4-s343"
+    "url": "git@github.com:57Viktor57/project-lvl4-s343.git"
   },
   "author": "Viktor Kugay",
   "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
   "homepage": "",
   "dependencies": {
     "@babel/cli": "^7.1.2",
