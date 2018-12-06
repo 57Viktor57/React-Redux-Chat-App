@@ -1,9 +1,20 @@
 import React from 'react';
+import ChannelsList from './channelsList';
+import Form from './form';
+import MessagesList from './messagesList';
 
 export default class App extends React.Component {
   render() {
-    console.log(this.props)
-    const { channels } = this.props;
-    return <ul className="list-group">{channels.map(item => <li key={item.id} className="list-group-item d-flex justify-content-center">{item.name}</li>)}</ul>
+    return (
+    <div className="row">
+      <div className="col-md-4">
+        <ChannelsList />
+      </div>
+      <div className="col-md-8">
+        <Form />
+        <MessagesList />
+      </div>
+    </div>
+  );
   }
 }

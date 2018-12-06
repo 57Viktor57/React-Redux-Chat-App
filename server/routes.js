@@ -103,6 +103,7 @@ export default (router, io) => {
 
   return router
     .get('root', '/', (ctx) => {
+      console.log(state);
       ctx.render('index', { gon: state });
     })
     .use('/api/v1', apiRouter.routes(), apiRouter.allowedMethods());
