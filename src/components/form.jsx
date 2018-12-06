@@ -3,19 +3,22 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 
-const mapStateToProps = ({ messageCreatingState, currentChannelId }) => ({
+const mapStateToProps = ({ messageCreatingState, currentChannelId, user }) => ({
   messageCreatingState,
-  currentChannelId
+  currentChannelId,
+  user,
 });
 
 @connect(mapStateToProps, actionCreators)
 class Form extends React.Component {
   submitFrom = (value) => {
     const { text } = value;
+    const { currentChannelId, user } = this.props;
     if (text.trim().length > 0) {
       const newMessage = {
-        channelId: this.props.currentChannelId,
-        text
+        author: user,
+        channelId: currentChannelId,
+        text,
       };
       this.props.addMessage(newMessage);
     }

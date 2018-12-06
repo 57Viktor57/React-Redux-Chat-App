@@ -9,7 +9,8 @@ import App from './components/App';
 import reducers from './reducers';
 import thunk from 'redux-thunk';
 import { addMessageSuccess } from './actions';
-// import faker from 'faker';
+import stateNormolizing from './stateNormolizing';
+import faker from 'faker/locale/en';
 import gon from 'gon';
 // import cookies from 'js-cookie';
 import io from 'socket.io-client';
@@ -20,7 +21,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducers, gon, composeEnhancers(applyMiddleware(thunk)));
+const initialState = { ...gon, ...stateNormolizing(gon), user: faker.name.findName() };
+
+const store = createStore(reducers, initialState, composeEnhancers(applyMiddleware(thunk)));
 
 const socket = io();
 

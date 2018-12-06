@@ -6,9 +6,11 @@ import * as actions from '../actions';
 
 const channels = (state = {}) => state;
 
+const user = (state = {}) => state;
+
 const messages = handleActions({
   [actions.addMessageSuccess](state, { payload }) {
-    return [...state, payload];
+    return { ...state, [payload.id]: payload };
   },
 }, []);
 
@@ -31,6 +33,7 @@ const messageCreatingState = handleActions({
 }, 'none');
 
 export default combineReducers({
+  user,
   channels,
   messages,
   currentChannelId,

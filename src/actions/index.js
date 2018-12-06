@@ -15,7 +15,7 @@ export const addMessage = message => async (dispatch) => {
     };
     await axios.post(url, { data });
   } catch (e) {
-    console.log('ERRRRORRRRRRRR');
+    dispatch(addMessageFailure());
   }
 };
 

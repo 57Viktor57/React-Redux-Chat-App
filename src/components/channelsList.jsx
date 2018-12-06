@@ -2,10 +2,11 @@ import React from 'react';
 import cn from 'classnames';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
+import { channelsSelector } from '../selectors';
 
-const mapStateToProps = ({ channels, currentChannelId }) => ({
-  channels,
-  currentChannelId
+const mapStateToProps = state => ({
+  channels: channelsSelector(state),
+  currentChannelId: state.currentChannelId,
 });
 
 @connect(mapStateToProps, actionCreators)
