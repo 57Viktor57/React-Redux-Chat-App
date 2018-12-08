@@ -2,12 +2,22 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/4b908d39b36aa0bae753/maintainability)](https://codeclimate.com/github/57Viktor57/project-lvl4-s343/maintainability)
 
-#Slack project.
+# Chat application.
 
-This is a project by student Viktor Kugay.
-Project is a web application the same as a Slack.
-Application was built with web socket API and React/Redux libraries.
+A simple chat application project made by using React, Redux and websockets integrated.
 
-#Demo link Heroku.
-
+## Demo link:
 [https://hexlet-slack-project.herokuapp.com/](https://hexlet-slack-project.herokuapp.com/)
+
+### Main features:
+
+- realtime chat
+- adding/deleting/renaming channels
+
+### Built With
+
+- AJAX
+- Websockets
+- React + Redux + Forms
+- Bootstrap on React
+- Webpack

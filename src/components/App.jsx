@@ -1,20 +1,18 @@
 import React from 'react';
-import ChannelsList from './channelsList';
-import Form from './form';
-import MessagesList from './messagesList';
+import ChannelsList from './ChannelsList';
+import Form from './Form';
+import MessagesList from './MessagesList';
 
-export default class App extends React.Component {
-  render() {
-    return (
-    <div className="row">
-      <div className="col-md-4">
-        <ChannelsList />
-      </div>
-      <div className="col-md-8">
-        <Form />
-        <MessagesList />
-      </div>
+const App = () => (
+  <div className="row">
+    <div className="col-md-4">
+      <ChannelsList />
     </div>
-  );
-  }
-}
+    <div className="col-md-8">
+      <Form />
+      <MessagesList />
+    </div>
+  </div>
+);
+
+export default App;

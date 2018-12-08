@@ -12,7 +12,7 @@ const messages = handleActions({
   [actions.addMessageSuccess](state, { payload }) {
     return { ...state, [payload.id]: payload };
   },
-}, []);
+}, {});
 
 const currentChannelId = handleActions({
   [actions.toggleActiveChannel](state, { payload: { id } }) {

@@ -5,15 +5,15 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import App from './components/App';
-import reducers from './reducers';
 import thunk from 'redux-thunk';
-import { addMessageSuccess } from './actions';
-import stateNormolizing from './stateNormolizing';
 import faker from 'faker/locale/en';
 import gon from 'gon';
 // import cookies from 'js-cookie';
 import io from 'socket.io-client';
+import { keyBy } from 'lodash';
+import App from './components/App';
+import { addMessageSuccess } from './actions';
+import reducers from './reducers';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -21,7 +21,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const initialState = { ...gon, ...stateNormolizing(gon), user: faker.name.findName() };
+const initialState = {
+  channels: keyBy(gon.channels, 'id'),
+  messages: keyBy(gon.messages, 'id'),
+  user: faker.name.findName(),
+  currentChannelId: gon.currentChannelId,
+};
 
 const store = createStore(reducers, initialState, composeEnhancers(applyMiddleware(thunk)));
 
@@ -31,7 +36,8 @@ socket.on('newMessage', ({ data: { attributes } }) => {
   store.dispatch(addMessageSuccess(attributes));
 });
 
-render(<Provider store={store}>
+render((
+  <Provider store={store}>
     <App />
   </Provider>
-  , document.getElementById('chat'));
+), document.getElementById('chat'));

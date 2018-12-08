@@ -11,14 +11,8 @@ build:
 	npm run build
 	npx webpack -p --env production && babel src --out-dir dist --source-maps inline
 
-test:
-	npm test
-
-check-types:
-	npx flow
-
 lint:
-	npx eslint .
+	npx eslint . --ext .js --ext .jsx
 
 publish:
 	npm publish
