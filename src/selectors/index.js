@@ -6,8 +6,8 @@ export const channelsSelector = createSelector(
   channels => Object.values(channels),
 );
 
-const getMessage = state => state.messages;
+const getMessage = ({ messages, currentChannelId }) => ({ messages, currentChannelId });
 export const messageSelector = createSelector(
   getMessage,
-  messages => Object.values(messages),
+  state => Object.values(state.messages).filter(item => item.channelId === state.currentChannelId),
 );

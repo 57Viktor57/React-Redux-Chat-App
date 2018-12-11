@@ -4,7 +4,7 @@ import connect from '../connect';
 import { messageSelector } from '../selectors';
 
 const mapStateToProps = state => ({
-  messages: messageSelector(state).filter(item => item.channelId === state.currentChannelId),
+  messages: messageSelector(state),
 });
 
 @connect(mapStateToProps)

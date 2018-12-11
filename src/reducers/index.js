@@ -1,10 +1,21 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 import { reducer as formReducer } from 'redux-form';
+import { omit } from 'lodash';
 import * as actions from '../actions';
 
 
-const channels = (state = {}) => state;
+const channels = handleActions({
+  [actions.addChannelSuccess](state, { payload }) {
+    return { ...state, [payload.id]: payload };
+  },
+  [actions.removeChannelSuccess](state, { payload }) {
+    return omit(state, payload.id);
+  },
+  [actions.renameChannelSuccess](state, { payload }) {
+    return { ...state, [payload.id]: payload };
+  },
+}, {});
 
 const user = (state = {}) => state;
 
@@ -20,23 +31,23 @@ const currentChannelId = handleActions({
   },
 }, 'none');
 
-const messageCreatingState = handleActions({
-  [actions.addMessageRequest]() {
-    return 'requested';
-  },
-  [actions.addMessageFailure]() {
-    return 'failed';
-  },
-  [actions.addMessageSuccess]() {
-    return 'successed';
-  },
-}, 'none');
+// const messageCreatingState = handleActions({
+//   [actions.addMessageRequest]() {
+//     return 'requested';
+//   },
+//   [actions.addMessageFailure]() {
+//     return 'failed';
+//   },
+//   [actions.addMessageSuccess]() {
+//     return 'successed';
+//   },
+// }, 'none');
 
 export default combineReducers({
   user,
   channels,
   messages,
   currentChannelId,
-  messageCreatingState,
+  // messageCreatingState,
   form: formReducer,
 });

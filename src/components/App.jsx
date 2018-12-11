@@ -1,6 +1,6 @@
 import React from 'react';
 import ChannelsList from './ChannelsList';
-import Form from './Form';
+import MessageForm from './MessageForm';
 import MessagesList from './MessagesList';
 
 const App = () => (
@@ -9,7 +9,7 @@ const App = () => (
       <ChannelsList />
     </div>
     <div className="col-md-8">
-      <Form />
+      <MessageForm />
       <MessagesList />
     </div>
   </div>

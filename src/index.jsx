@@ -12,13 +12,19 @@ import gon from 'gon';
 import io from 'socket.io-client';
 import { keyBy } from 'lodash';
 import App from './components/App';
-import { addMessageSuccess } from './actions';
+import {
+  addMessageSuccess,
+  addChannelSuccess,
+  removeChannelSuccess,
+  renameChannelSuccess,
+} from './actions';
 import reducers from './reducers';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
+/* eslint no-underscore-dangle: ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] }] */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
@@ -34,6 +40,18 @@ const socket = io();
 
 socket.on('newMessage', ({ data: { attributes } }) => {
   store.dispatch(addMessageSuccess(attributes));
+});
+
+socket.on('newChannel', ({ data: { attributes } }) => {
+  store.dispatch(addChannelSuccess(attributes));
+});
+
+socket.on('removeChannel', ({ data }) => {
+  store.dispatch(removeChannelSuccess(data));
+});
+
+socket.on('renameChannel', ({ data: { attributes } }) => {
+  store.dispatch(renameChannelSuccess(attributes));
 });
 
 render((

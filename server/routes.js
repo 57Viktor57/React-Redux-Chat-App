@@ -25,6 +25,7 @@ export default (router, io) => {
     })
     .post('/channels', (ctx) => {
       const { data: { attributes: { name } } } = ctx.request.body;
+      console.log(name);
       const channel = {
         name,
         removable: true,
