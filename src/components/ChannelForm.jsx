@@ -11,7 +11,7 @@ const empty = value => (value.trim().length > 0 ? undefined : 'Input character')
 
 @connect(mapStateToProps)
 @reduxForm({ form: 'addChannelForm' })
-class AddChannelForm extends React.Component {
+class ChannelForm extends React.Component {
   submit = (value) => {
     const { addChannel, reset } = this.props;
     return addChannel({
@@ -37,4 +37,4 @@ class AddChannelForm extends React.Component {
   }
 }
 
-export default AddChannelForm;
+export default ChannelForm;
