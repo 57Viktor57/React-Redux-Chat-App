@@ -21,7 +21,7 @@ export default () => {
   app.keys = ['some secret hurr'];
   app.use(session(app));
   app.use(bodyParser());
-  // app.use(serve(path.join(__dirname, '..', 'public')));
+
   koaWebpack({
     config: webpackConfig,
   }).then((middleware) => {

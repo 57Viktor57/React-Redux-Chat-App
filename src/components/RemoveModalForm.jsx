@@ -1,36 +1,32 @@
 import React from 'react';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import {
   Button, Modal, ModalHeader, ModalBody,
 } from 'reactstrap';
-import connect from '../connect';
+import store from '../store';
+import { removeChannel } from '../actions';
 
-const required = value => (value ? undefined : 'Input message');
-const empty = value => (value.trim().length > 0 ? undefined : 'Input character');
+const isEmpty = (value) => {
+  if (!value || value.trim().length === 0) {
+    return 'Input characters';
+  }
+  return null;
+};
 
-@connect(() => ({}))
 @reduxForm({ form: 'RemoveChannelForm' })
 class RemoveChannelForm extends React.Component {
   submit = () => {
-    const {
-      removeChannel, reset, id, toggle,
-    } = this.props;
-    return removeChannel({
+    const { reset, id, toggle } = this.props;
+    reset();
+    toggle();
+    return store.dispatch(removeChannel({
       id,
-    })
-      .then(() => {
-        reset();
-        toggle();
-      })
-      .catch(() => {
-        reset();
-        throw new SubmissionError({ connect: 'ERR_INTERNET_DISCONNECTED', _error: 'ERR_INTERNET_DISCONNECTED' });
-      });
+    }));
   }
 
-  comparer = (value) => {
+  isEqual = (value) => {
     const { name } = this.props;
-    return name === value ? undefined : 'Input channel name';
+    return name !== value ? 'Input channel name' : null;
   };
 
   render() {
@@ -44,7 +40,7 @@ class RemoveChannelForm extends React.Component {
         <ModalBody>
           <p>Please type in the name of the repository to confirm.</p>
           <form onSubmit={handleSubmit(this.submit)}>
-            <Field className="form-control" validate={[required, empty, this.comparer]} id="input" name="name" component="input" />
+            <Field className="form-control" validate={[isEmpty, this.isEqual]} id="input" name="name" component="input" />
             <div className="w-100 d-flex justify-content-around mt-3">
               <Button color="secondary" onClick={toggle}>Cancel</Button>
               <Button type="submit" color="danger" disabled={submitting || pristine}>Delete</Button>

@@ -1,34 +1,30 @@
 import React from 'react';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
-import connect from '../connect';
+import { Field, reduxForm } from 'redux-form';
+import store from '../store';
+import { addChannel } from '../actions';
 
-const mapStateToProps = ({ user }) => ({
-  user,
-});
+const isEmpty = (value) => {
+  if (!value || value.trim().length === 0) {
+    return 'Input characters';
+  }
+  return null;
+};
 
-const required = value => (value ? undefined : 'Input message');
-const empty = value => (value.trim().length > 0 ? undefined : 'Input character');
-
-@connect(mapStateToProps)
 @reduxForm({ form: 'addChannelForm' })
 class ChannelForm extends React.Component {
   submit = (value) => {
-    const { addChannel, reset } = this.props;
-    return addChannel({
-      name: value.name,
-    })
-      .then(() => reset())
-      .catch(() => {
-        reset();
-        throw new SubmissionError({ connect: 'ERR_INTERNET_DISCONNECTED', _error: 'ERR_INTERNET_DISCONNECTED' });
-      });
+    const { reset } = this.props;
+    reset();
+    return store.dispatch(addChannel({
+      name: value.name.trim(),
+    }));
   }
 
   render() {
     const { handleSubmit, submitting, pristine } = this.props;
     return (
       <form onSubmit={handleSubmit(this.submit)} className="d-flex justify-content-between mb-3">
-        <Field className="form-control" validate={[required, empty]} id="input" name="name" component="input" />
+        <Field className="form-control" validate={[isEmpty]} id="input" name="name" component="input" />
         <button type="submit" disabled={submitting || pristine} className="btn btn-primary ml-3">
           Add
         </button>

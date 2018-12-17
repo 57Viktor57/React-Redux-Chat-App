@@ -9,7 +9,6 @@ install-deps:
 build:
 	rm -rf dist
 	npm run build
-	npx webpack -p --env production && babel src --out-dir dist --source-maps inline
 
 lint:
 	npx eslint . --ext .js --ext .jsx

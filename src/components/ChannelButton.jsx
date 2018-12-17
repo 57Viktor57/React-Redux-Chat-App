@@ -7,17 +7,17 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
-import connect from '../connect';
 import RenameModalForm from './RenameModalForm';
 import RemoveModalForm from './RemoveModalForm';
+import { toggleActiveChannel } from '../actions';
+import store from '../store';
 
-@connect(() => ({}))
+
 class ChannelButton extends React.Component {
   state = { dropdownOpen: false, renameModal: false, removeModal: false };
 
   toggleActiveChannel = id => () => {
-    const { toggleActiveChannel } = this.props;
-    toggleActiveChannel({ id });
+    store.dispatch(toggleActiveChannel({ id }));
   }
 
   toggleDropdown = () => {
