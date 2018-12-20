@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import connect from '../connect';
 
 const mapStateToProps = ({ currentChannelId, user }) => ({
@@ -21,16 +21,12 @@ class Form extends React.Component {
     const {
       user, currentChannelId, reset, addMessage,
     } = this.props;
+    reset();
     return addMessage({
       author: user,
       channelId: currentChannelId,
       text: value.text.trim(),
-    })
-      .then(() => reset())
-      .catch(() => {
-        reset();
-        throw new SubmissionError({ connect: 'ERR_INTERNET_DISCONNECTED', _error: 'ERR_INTERNET_DISCONNECTED' });
-      });
+    });
   }
 
   render() {

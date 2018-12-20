@@ -3,8 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import {
   Button, Modal, ModalHeader, ModalBody,
 } from 'reactstrap';
-import store from '../store';
-import { renameChannel } from '../actions';
+import connect from '../connect';
 
 const isEmpty = (value) => {
   if (!value || value.trim().length === 0) {
@@ -13,16 +12,22 @@ const isEmpty = (value) => {
   return null;
 };
 
+@connect(null)
 @reduxForm({ form: 'RenameChannelForm' })
 class RenameChannelForm extends React.Component {
   submit = (value) => {
-    const { reset, id, toggle } = this.props;
+    const {
+      reset,
+      id,
+      toggle,
+      renameChannel,
+    } = this.props;
     reset();
     toggle();
-    return store.dispatch(renameChannel({
+    return renameChannel({
       name: value.name.trim(),
       id,
-    }));
+    });
   }
 
   render() {

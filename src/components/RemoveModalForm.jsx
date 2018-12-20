@@ -3,8 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import {
   Button, Modal, ModalHeader, ModalBody,
 } from 'reactstrap';
-import store from '../store';
-import { removeChannel } from '../actions';
+import connect from '../connect';
 
 const isEmpty = (value) => {
   if (!value || value.trim().length === 0) {
@@ -13,15 +12,21 @@ const isEmpty = (value) => {
   return null;
 };
 
+@connect(null)
 @reduxForm({ form: 'RemoveChannelForm' })
 class RemoveChannelForm extends React.Component {
   submit = () => {
-    const { reset, id, toggle } = this.props;
+    const {
+      reset,
+      id,
+      toggle,
+      removeChannel,
+    } = this.props;
     reset();
     toggle();
-    return store.dispatch(removeChannel({
+    return removeChannel({
       id,
-    }));
+    });
   }
 
   isEqual = (value) => {

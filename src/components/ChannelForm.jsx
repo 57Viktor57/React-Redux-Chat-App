@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import store from '../store';
-import { addChannel } from '../actions';
+import connect from '../connect';
+
 
 const isEmpty = (value) => {
   if (!value || value.trim().length === 0) {
@@ -10,14 +10,15 @@ const isEmpty = (value) => {
   return null;
 };
 
+@connect(null)
 @reduxForm({ form: 'addChannelForm' })
 class ChannelForm extends React.Component {
   submit = (value) => {
-    const { reset } = this.props;
+    const { reset, addChannel } = this.props;
     reset();
-    return store.dispatch(addChannel({
+    return addChannel({
       name: value.name.trim(),
-    }));
+    });
   }
 
   render() {

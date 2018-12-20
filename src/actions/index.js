@@ -35,21 +35,29 @@ export const removeChannel = ({ id }) => async () => {
   }
 };
 
-export const renameChannel = ({ name, id }) => () => {
-  const url = routes.channelsUrl(id);
-  const data = {
-    attributes: {
-      name,
-      id,
-    },
-  };
-  return axios.patch(url, { data });
+export const renameChannel = ({ name, id }) => async () => {
+  try {
+    const url = routes.channelsUrl(id);
+    const data = {
+      attributes: {
+        name,
+        id,
+      },
+    };
+    return await axios.patch(url, { data });
+  } catch (e) {
+    throw new SubmissionError({ connect: 'ERR_INTERNET_DISCONNECTED', _error: 'ERR_INTERNET_DISCONNECTED' });
+  }
 };
 
-export const addMessage = message => () => {
-  const url = routes.messagesUrl(message.channelId);
-  const data = {
-    attributes: message,
-  };
-  return axios.post(url, { data });
+export const addMessage = message => async () => {
+  try {
+    const url = routes.messagesUrl(message.channelId);
+    const data = {
+      attributes: message,
+    };
+    return await axios.post(url, { data });
+  } catch (e) {
+    throw new SubmissionError({ connect: 'ERR_INTERNET_DISCONNECTED', _error: 'ERR_INTERNET_DISCONNECTED' });
+  }
 };

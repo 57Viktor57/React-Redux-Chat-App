@@ -25,7 +25,7 @@ const messages = handleActions({
   },
   [actions.removeChannelSuccess](state, { payload }) {
     const { id } = payload;
-    return omitBy(state, item => item.channelId === id);
+    return omitBy(state, { channelId: id });
   },
 }, {});
 
