@@ -8,12 +8,10 @@
   "main": "./dist/bin/slack.js",
   "scripts": {
     "start": "node ./dist/bin/slack.js",
-    "heroku-postbuild": "webpack -p",
-    "test": "jest",
+    "dev": "NODE_ENV=development npx nodemon --exec npx babel-node server/bin/slack.js",
     "build-server": "babel server --out-dir dist --source-maps inline",
     "build-app": "npx webpack -p --env production",
-    "build": "npm run build-app && npm run build-server",
-    "postinstall": "npm run build"
+    "build": "npm run build-app && npm run build-server"
   },
   "repository": {
     "type": "git",
@@ -59,6 +57,7 @@
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
+    "react-spinners": "^0.4.8",
     "reactstrap": "^6.5.0",
     "redux": "^4.0.0",
     "redux-actions": "^2.6.1",

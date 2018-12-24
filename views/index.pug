@@ -3,7 +3,7 @@ html(lang="en")
   head
     title= Title
     style
-      include bootstrap.min.css
+      include ../node_modules/bootstrap/dist/css/bootstrap.min.css
     script.
       var gon = !{JSON.stringify(gon)};
   body
@@ -20,5 +20,12 @@ html(lang="en")
       .container
         #chat
         // block content
-    script
-      include ../dist/main.js
+    if process.env.NODE_ENV === 'development'
+      script.
+        console.log('development')
+      script(src='/assets/main.js')
+    else
+      script.
+        console.log('production')
+      script
+        include ../dist/main.js

@@ -11,7 +11,7 @@ import RenameModalForm from './RenameModalForm';
 import RemoveModalForm from './RemoveModalForm';
 import connect from '../connect';
 
-@connect(null)
+@connect()
 class ChannelButton extends React.Component {
   state = { dropdownOpen: false, renameModal: false, removeModal: false };
 
