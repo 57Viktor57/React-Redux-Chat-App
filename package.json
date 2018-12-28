@@ -1,7 +1,7 @@
 {
   "name": "frontend_project",
   "version": "0.0.1",
-  "description": "Project from Hexlet IO by Viktor Kugay",
+  "description": "Project Hexlet IO by Viktor Kugay",
   "engines": {
     "node": "8.10.0"
   },
@@ -20,10 +20,7 @@
   },
   "author": "Viktor Kugay",
   "license": "ISC",
-  "bugs": {
-    "url": ""
-  },
-  "homepage": "",
+  "homepage": "https://hexlet-slack-project.herokuapp.com/",
   "dependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
@@ -49,13 +46,13 @@
     "koa-bodyparser": "^4.2.1",
     "koa-generic-session": "^2.0.1",
     "koa-logger": "^3.2.0",
+    "koa-mount": "^4.0.0",
     "koa-pug": "^3.0.0-2",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa-webpack": "^5.1.0",
     "lodash": "^4.17.11",
     "react": "^16.5.2",
-    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
     "react-spinners": "^0.4.8",
@@ -85,6 +82,7 @@
     "eslint-plugin-react": "^7.11.1",
     "jest": "^23.6.0",
     "jest-cli": "^23.6.0",
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.4",
+    "uglifyjs-webpack-plugin": "^2.1.1"
   }
 }

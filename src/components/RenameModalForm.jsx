@@ -27,17 +27,13 @@ class RenameChannelForm extends React.Component {
       id,
       toggle,
       renameChannel,
-      renameChannelFailure,
-      renameChannelRequest,
     } = this.props;
-    renameChannelRequest();
     try {
       await renameChannel({
         name: value.name.trim(),
         id,
       });
     } catch {
-      renameChannelFailure();
       throw new SubmissionError({ connect: 'ERR_INTERNET_DISCONNECTED', _error: 'ERR_INTERNET_DISCONNECTED' });
     }
     reset();

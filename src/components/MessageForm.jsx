@@ -27,10 +27,7 @@ class Form extends React.Component {
       reset,
       addMessage,
       currentChannelId,
-      addMessageRequest,
-      addMessageFailure,
     } = this.props;
-    addMessageRequest();
     try {
       await addMessage({
         author: user,
@@ -38,7 +35,6 @@ class Form extends React.Component {
         text: value.text.trim(),
       });
     } catch {
-      addMessageFailure();
       throw new SubmissionError({ connect: 'ERR_INTERNET_DISCONNECTED', _error: 'ERR_INTERNET_DISCONNECTED' });
     }
     reset();

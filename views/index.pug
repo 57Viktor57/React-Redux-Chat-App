@@ -20,12 +20,5 @@ html(lang="en")
       .container
         #chat
         // block content
-    if process.env.NODE_ENV === 'development'
-      script.
-        console.log('development')
-      script(src='/assets/main.js')
-    else
-      script.
-        console.log('production')
-      script
-        include ../dist/main.js
+    script(src='/assets/vendors~main.js')
+    script(src='/assets/main.js')

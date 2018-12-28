@@ -20,16 +20,12 @@ const isEmpty = (value) => {
 @reduxForm({ form: 'addChannelForm' })
 class ChannelForm extends React.Component {
   submit = async (value) => {
-    const {
-      reset, addChannel, addChannelRequest, addChannelFailure,
-    } = this.props;
-    addChannelRequest();
+    const { reset, addChannel } = this.props;
     try {
       await addChannel({
         name: value.name.trim(),
       });
     } catch {
-      addChannelFailure();
       throw new SubmissionError({ connect: 'ERR_INTERNET_DISCONNECTED', _error: 'ERR_INTERNET_DISCONNECTED' });
     }
     reset();

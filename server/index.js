@@ -1,5 +1,6 @@
 // @flow
-
+import serve from 'koa-static';
+import mount from 'koa-mount';
 import path from 'path';
 import Koa from 'koa';
 import Pug from 'koa-pug';
@@ -27,6 +28,8 @@ export default () => {
     }).then((middleware) => {
       app.use(middleware);
     });
+  } else {
+    app.use(mount('/assets', serve(path.join(__dirname, '..', 'dist'))))
   }
 
   const router = new Router();
