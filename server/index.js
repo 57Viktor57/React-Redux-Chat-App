@@ -29,7 +29,7 @@ export default () => {
       app.use(middleware);
     });
   } else {
-    app.use(mount('/assets', serve(path.join(__dirname, '..', 'dist'))))
+    app.use(mount('/assets', serve(path.join(__dirname, '..', 'dist'))));
   }
 
   const router = new Router();
