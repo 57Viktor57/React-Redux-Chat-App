@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/57Viktor57/React-Redux-Chat-App.svg?branch=master)](https://travis-ci.com/57Viktor57/React-Redux-Chat-App) [![Maintainability](https://api.codeclimate.com/v1/badges/4b908d39b36aa0bae753/maintainability)](https://codeclimate.com/github/57Viktor57/project-lvl4-s343/maintainability)
+[![Build Status](https://travis-ci.com/57Viktor57/React-Redux-Chat-App.svg?branch=master)](https://travis-ci.com/57Viktor57/React-Redux-Chat-App) [![Maintainability](https://api.codeclimate.com/v1/badges/696e78b02a6b01c8f145/maintainability)](https://codeclimate.com/github/57Viktor57/React-Redux-Chat-App/maintainability)
 
 # Real time chat application.
 
